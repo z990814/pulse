@@ -30,4 +30,16 @@ export default {
       data: formQuery
     })
   },
+  findNodes() {
+    return request({
+      url: '/pulse/group/findNodes',
+      method: 'get'
+    })
+  },
+  findNodesSelected(id) {
+    return request({
+      url: '/pulse/group/findNodesSelected/' + id,
+      method: 'get'
+    })
+  }
 }

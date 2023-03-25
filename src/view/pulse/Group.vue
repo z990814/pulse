@@ -18,11 +18,8 @@
           <div slot="reference" class="name-wrapper">
             <p v-if="scope.row.type === 0" style="font-weight: 700;font-size:17px;">默认随机问题组</p>
             <p v-else-if="scope.row.type === 1" style="font-weight: 700;font-size:17px;">自由固定问题组</p>
-            <p v-else-if="scope.row.type === 2" style="font-weight: 700;font-size:17px;">顺序算法问题组</p>
-            <p v-else-if="scope.row.type === 3" style="font-weight: 700;font-size:17px;">周顺序算法问题组</p>
-            <p v-else-if="scope.row.type === 4" style="font-weight: 700;font-size:17px;">月顺序算法问题组</p>
-            <p v-else-if="scope.row.type === 5" style="font-weight: 700;font-size:17px;">年顺序算法问题组</p>
-            <p v-else-if="scope.row.type === 6" style="font-weight: 700;font-size:17px;">自定义算法问题组</p>
+            <p v-else-if="scope.row.type === 2" style="font-weight: 700;font-size:17px;">自定义算法问题组</p>
+            <p v-else-if="scope.row.type === 3" style="font-weight: 700;font-size:17px;">敬业度特定算法问题组</p>
           </div>
         </template>
       </el-table-column>
@@ -65,17 +62,29 @@
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-        <el-form-item label="题目数量:" :label-width="formLabelWidth">
+
+        <el-form-item v-if="groupForm.type === 0 || groupForm.type === 1" label="题目数量:" :label-width="formLabelWidth">
           <div class="inputGroup">
             <input v-model="groupForm.questionAmount" type="number" required="" autocomplete="off" placeholder="请输入整数">
           </div>
-          <el-button v-if="groupForm.type === 1 && groupForm.questionAmount > 0" class="el-button--goon" style="margin-top: 4px;" @click="toChooseQuestions()" > 选择题目</el-button>
+          <el-button v-if="groupForm.type === 1" class="el-button--goon" style="margin-top: 4px;" @click="toAddQuestions()" > 选择题目</el-button>
         </el-form-item>
+
         <el-form-item label="描述:" :label-width="formLabelWidth">
-          <p v-if="groupForm.type === 0" style="color:lightseagreen;font-size:19px;margin:0;font-weight:700">对一个主题的所有问题进行随机抽取</p>
-          <div v-else-if="groupForm.type === 1" class="inputGroup">
+          <p v-if="groupForm.type === 0" style="color:lightseagreen;font-size:19px;margin:0;font-weight:700">对一个主题的所有问题进行随机抽取{{ groupForm.questionAmount }}题</p>
+          <div v-else-if="groupForm.type === 1 || groupForm.type === 2" class="inputGroup">
             <input v-model="groupForm.description" type="text" required="" autocomplete="off">
           </div>
+          <p v-if="groupForm.type === 3" style="color:lightseagreen;font-size:19px;margin:0;font-weight:700">主题题数需大于24题，<br>若总题数为96题，96除24等于4，每日推4题。<br>若每月一号为周二<br>
+            则第一到第四个周二推{1-16题}<br>
+             第一到第四个周三推{17-32题}<br>
+             第一到第四个周四推{33-48题}<br>
+             第一到第四个周五推{49-64题}<br>
+             第一到第四个周六推{65-80题}<br>
+             第一到第四个周一推{81-96题}<br>
+             剩下的天数从第一题按顺序推<br>
+             若一号为周日，按周一算即可
+          </p>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -96,18 +105,31 @@
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-        <el-form-item label="题目数量:" :label-width="formLabelWidth">
+
+        <el-form-item v-if="updateForm.type === 0 || updateForm.type === 1" label="题目数量:" :label-width="formLabelWidth">
           <div class="inputGroup">
             <input v-model="updateForm.questionAmount" type="number" required="" autocomplete="off" placeholder="请输入整数">
           </div>
           <el-button v-if="updateForm.type === 1 && updateForm.questionAmount > 0" class="el-button--goon" style="margin-top: 4px;" @click="toChooseQuestions()" > 选择题目</el-button>
         </el-form-item>
+
         <el-form-item label="描述:" :label-width="formLabelWidth">
-          <p v-if="updateForm.type === 0" style="color:lightseagreen;font-size:19px;margin:0;font-weight:700">对一个主题的所有问题进行随机抽取</p>
-          <div v-else-if="updateForm.type === 1" class="inputGroup">
+          <p v-if="updateForm.type === 0" style="color:lightseagreen;font-size:19px;margin:0;font-weight:700">对一个主题的所有问题进行随机抽取{{ updateForm.questionAmount }}题</p>
+          <div v-else-if="updateForm.type === 1 || updateForm.type === 2" class="inputGroup">
             <input v-model="updateForm.description" type="text" required="" autocomplete="off">
           </div>
+          <p v-if="updateForm.type === 3" style="color:lightseagreen;font-size:19px;margin:0;font-weight:700">主题题数需大于24题，<br>若总题数为96题，96除24等于4，每日推4题。<br>若每月一号为周二<br>
+            则第一到第四个周二推{1-16题}<br>
+             第一到第四个周三推{17-32题}<br>
+             第一到第四个周四推{33-48题}<br>
+             第一到第四个周五推{49-64题}<br>
+             第一到第四个周六推{65-80题}<br>
+             第一到第四个周一推{81-96题}<br>
+             剩下的天数从第一题按顺序推<br>
+             若一号为周日，按周一算即可
+          </p>
         </el-form-item>
+
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button class="el-button--goon" @click="dialogVisibleUpdate = false">取 消</el-button>
@@ -122,6 +144,16 @@
         <el-button class="el-button--goon" type="primary" @click="deleteGroup()">确 定</el-button>
       </span>
     </el-dialog>
+
+    <el-dialog title="选择问题" :close-on-click-modal="false" :visible.sync="dialogVisibleChoose" width="30%" style="color:aquamarine;">
+      <el-tree :data="data"  show-checkbox default-expand-all node-key="value" :default-checked-keys="dataSelected" ref="tree" highlight-current :props="defaultProps">
+      </el-tree>
+      <span slot="footer" class="dialog-footer">
+        <el-button class="el-button--goon" @click="dialogVisibleChoose = false">取 消</el-button>
+        <el-button class="el-button--goon" type="primary" @click="getCheckedKeys">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -131,6 +163,8 @@ import groupApi from '@/api/group'
     data() {
       return {
         tableData: [],
+        data: [],
+        dataSelected:[],
         innerHeight: window.innerHeight,
         formQuery: {},
         total: 0,
@@ -143,6 +177,11 @@ import groupApi from '@/api/group'
         formLabelWidth: '87px',
         groupForm: {},
         updateForm: {},
+        thisSelectQues: '',
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        },
         options: [
           {
             value: 0,
@@ -155,23 +194,11 @@ import groupApi from '@/api/group'
           },
           {
             value: 2,
-            label: '顺序算法问题组'
+            label: '自定义算法问题组'
           },
           {
             value: 3,
-            label: '周顺序算法问题组'
-          },
-          {
-            value: 4,
-            label: '月顺序算法问题组'
-          },
-          {
-            value: 5,
-            label: '年顺序算法问题组'
-          },
-          {
-            value: 6,
-            label: '自定义算法问题组'
+            label: '敬业度特定算法组'
           }
         ]
       }
@@ -180,16 +207,60 @@ import groupApi from '@/api/group'
       this.getform(1,10)
     },
     methods: {
+      getCheckedKeys() {
+        this.thisSelectQues = ''
+        console.log(this.$refs.tree.getCheckedKeys())
+        const ques = this.$refs.tree.getCheckedKeys()
+        var counts = 0
+        ques.forEach(element => {
+          if(element) {
+            this.thisSelectQues = this.thisSelectQues + ',' + element
+            counts = counts +1
+          }
+        })
+        if(this.chooseType === 1) {
+          this.updateForm.questionAmount = counts
+        } else if(this.chooseType === 2) {
+          this.groupForm.questionAmount = counts
+        }
+        console.log(counts)
+        console.log(this.thisSelectQues)
+        this.dialogVisibleChoose = false
+
+      },
+      resetChecked() {
+        this.$refs.tree.setCheckedKeys([])
+      },
       toAddGroup() {
         this.groupForm = {}
         this.dialogVisible = true
       },
       toUpdateGroup(index,row) {
-        this.updateForm = row
+        this.updateForm = JSON.parse(JSON.stringify(row))
         this.dialogVisibleUpdate = true
       },
       toChooseQuestions() {
         this.dialogVisibleChoose = true
+        this.getQuestionTreeList()
+        this.getQuestionTreeListSelect()
+        this.chooseType = 1
+      },
+      toAddQuestions(){
+        this.chooseType = 2
+        this.dataSelected = []
+        this.getQuestionTreeList()
+        this.dialogVisibleChoose = true
+      },
+      getQuestionTreeList() {
+        groupApi.findNodes().then(res => {
+          this.data = res.data.data.list
+        })
+      },
+      getQuestionTreeListSelect() {
+        groupApi.findNodesSelected(this.updateForm.id).then(res => {
+          console.log(res.data.data.list)
+          this.dataSelected = res.data.data.list 
+        })
       },
       getform(current, limit) {
         groupApi.getFormDataListPage(current, limit, this.formQuery).then(res => {
@@ -200,6 +271,9 @@ import groupApi from '@/api/group'
         })
       },
       addGroup() {
+        if(this.thisSelectQues) {
+          this.groupForm.formula = this.thisSelectQues.slice(1)
+        }
         groupApi.addGroup(this.groupForm).then(res => {
           if(res.data.code === 200) {
             this.$message({
@@ -212,6 +286,9 @@ import groupApi from '@/api/group'
         })
       },
       updateGroup() {
+        if(this.thisSelectQues) {
+          this.updateForm.formula = this.thisSelectQues.slice(1)
+        }
         groupApi.updateGroup(this.updateForm).then(res => {
           if(res.data.code === 200) {
             this.$message({
