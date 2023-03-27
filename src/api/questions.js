@@ -8,6 +8,12 @@ export default {
       data: bQuestions
     })
   },
+  getQuestionAsOption() {
+    return request({
+      url: '/pulse/questions/getQuestionAsOption',
+      method: 'get'
+    })
+  },
   updateQuestion(bQuestions) {
     return request({
       url: '/pulse/questions/updateQuestion',
