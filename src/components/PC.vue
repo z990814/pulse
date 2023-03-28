@@ -15,9 +15,11 @@
         <div class="third"><img src="../assets/test-header-3.svg" /></div>
       </div>
       <div class="shape">
-        <div class="shape1"></div>
-        <div class="shape2"></div>
-        <div class="shape3"></div>
+        <div class="shape1"><div class="text">没有时间限制</div></div>
+        <div class="shape2"><div class="text">请诚实回答</div></div>
+        <div class="shape3">
+          <div class="text">请尽量不要选择“中立”的答案</div>
+        </div>
       </div>
     </div>
     <!--问题-->
@@ -203,6 +205,10 @@ export default {};
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 /* 头部 */
 .header {
   /* background-color: #33a474; */
@@ -236,7 +242,7 @@ h1 {
   width: 350px;
   height: 160px;
   margin-right: 50px;
-  background-color: #e4ae3a;
+  background-color: #dcebf0;
 }
 .second {
   position: absolute;
@@ -245,7 +251,7 @@ h1 {
   width: 350px;
   height: 160px;
   margin-right: 50px;
-  background-color: #4298b4;
+  background-color: #ede6da;
 }
 .third {
   position: absolute;
@@ -253,7 +259,7 @@ h1 {
   margin-left: 1200px;
   width: 350px;
   height: 160px;
-  background-color: #583f64;
+  background-color: #eee0f5;
 }
 img {
   height: 60px;
@@ -288,6 +294,13 @@ img {
   height: 80px;
   width: 350px;
   background-color: #fff;
+}
+.text {
+  text-align: center;
+  line-height: 80px;
+  font-size: 1.2em;
+  color: #576071;
+  font-weight: 600;
 }
 /* 问题 */
 .question {
