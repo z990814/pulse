@@ -33,7 +33,7 @@
           <div class="radios">
             <span>
               <label class="container">
-                <input checked="checked" type="checkbox" />
+                <input type="radio" value="-2" />
                 <div
                   class="checkmark"
                   style="height: 2.5em; width: 2.5em"
@@ -42,7 +42,7 @@
             </span>
             <span>
               <label class="container">
-                <input checked="checked" type="checkbox" />
+                <input type="radio" value="-1" />
                 <div
                   class="checkmark checkmark2"
                   style="height: 1.75em; width: 1.75em"
@@ -51,7 +51,7 @@
             </span>
             <span>
               <label class="container">
-                <input checked="checked" type="checkbox" />
+                <input type="radio" value="0" />
                 <div
                   class="checkmark checkmark3"
                   style="height: 1.25em; width: 1.25em"
@@ -60,7 +60,7 @@
             </span>
             <span>
               <label class="container">
-                <input checked="checked" type="checkbox" />
+                <input type="radio" value="1" />
                 <div
                   class="checkmark checkmark2"
                   style="height: 1.75em; width: 1.75em"
@@ -69,7 +69,7 @@
             </span>
             <span>
               <label class="container">
-                <input checked="checked" type="checkbox" />
+                <input type="radio" value="2" />
                 <div
                   class="checkmark"
                   style="height: 2.5em; width: 2.5em"
@@ -192,6 +192,114 @@
           <div class="text-option2">完全不同意</div>
         </div>
       </fieldset>
+      <fieldset class="question">
+        <legend>
+          <span>我很清楚我所做的工作对公司的价值和意义。</span>
+        </legend>
+        <div class="group_option">
+          <div class="text-option1">完全同意</div>
+          <div class="radios">
+            <span>
+              <label class="container">
+                <input checked="checked" type="checkbox" />
+                <div
+                  class="checkmark"
+                  style="height: 2.5em; width: 2.5em"
+                ></div>
+              </label>
+            </span>
+            <span>
+              <label class="container">
+                <input checked="checked" type="checkbox" />
+                <div
+                  class="checkmark checkmark2"
+                  style="height: 1.75em; width: 1.75em"
+                ></div>
+              </label>
+            </span>
+            <span>
+              <label class="container">
+                <input checked="checked" type="checkbox" />
+                <div
+                  class="checkmark checkmark3"
+                  style="height: 1.25em; width: 1.25em"
+                ></div>
+              </label>
+            </span>
+            <span>
+              <label class="container">
+                <input checked="checked" type="checkbox" />
+                <div
+                  class="checkmark checkmark2"
+                  style="height: 1.75em; width: 1.75em"
+                ></div>
+              </label>
+            </span>
+            <span>
+              <label class="container">
+                <input checked="checked" type="checkbox" />
+                <div
+                  class="checkmark"
+                  style="height: 2.5em; width: 2.5em"
+                ></div>
+              </label>
+            </span>
+          </div>
+          <div class="text-option2">完全不同意</div>
+        </div>
+      </fieldset>
+      <fieldset class="question">
+        <legend>
+          <span>请写出一个您期望公司改善的问题点及建议:</span>
+        </legend>
+        <div class="textarea-container">
+          <textarea class="textarea" placeholder="请输入文本"></textarea>
+        </div>
+      </fieldset>
+    </div>
+    <!--用户信息-->
+    <div class="infomation">
+      <fieldset class="info">
+        <legend>
+          <span>您的工号：</span>
+        </legend>
+        <input type="text" placeholder="请输入工号" />
+      </fieldset>
+      <fieldset class="info">
+        <legend>
+          <span>您的姓名：</span>
+        </legend>
+        <input type="text" placeholder="请输入姓名" />
+      </fieldset>
+      <fieldset class="info">
+        <legend>
+          <span>您的性别：</span>
+        </legend>
+        <span>
+          <label class="info">
+            <input type="text" placeholder="请输入姓名" />
+            <!-- <div class="checkmark" style="height: 2.5em; width: 2.5em"></div> -->
+          </label>
+        </span>
+      </fieldset>
+      <fieldset class="info">
+        <legend>
+          <span>您的年龄：</span>
+        </legend>
+        <input type="text" placeholder="请输入姓名" />
+      </fieldset>
+      <fieldset class="info">
+        <legend>
+          <span>您的学历：</span>
+        </legend>
+        <input type="text" placeholder="请输入姓名" />
+      </fieldset>
+      <fieldset class="info">
+        <legend>
+          <span>您的管理职：</span>
+        </legend>
+        <input type="text" placeholder="请输入姓名" />
+      </fieldset>
     </div>
     <!--提交按钮-->
     <div class="footer">
@@ -201,7 +309,10 @@
 </template>
 
 <script>
-export default {};
+import index from "@/view/index.vue";
+export default {
+  components: { index },
+};
 </script>
 
 <style scoped>
@@ -211,22 +322,22 @@ export default {};
 }
 /* 头部 */
 .header {
+  overflow: hidden;
   /* background-color: #33a474; */
 }
 .title {
   width: 100%;
   height: 300px;
   background-color: #33a474;
-  /* margin: 0 auto; */
   text-align: center;
   color: #fff;
-  font-size: 2.3em;
 }
 h1 {
   padding-top: 10px;
   line-height: 2.3em;
-  margin-top: 0;
-  margin-bottom: 0;
+  font-size: 4em;
+  /* margin-top: 0;
+  margin-bottom: 0; */
 }
 .tips {
   position: relative;
@@ -238,7 +349,7 @@ h1 {
 .first {
   position: absolute;
   margin-top: -80px;
-  margin-left: 400px;
+  margin-left: 23%;
   width: 350px;
   height: 160px;
   margin-right: 50px;
@@ -247,7 +358,7 @@ h1 {
 .second {
   position: absolute;
   margin-top: -80px;
-  margin-left: 800px;
+  margin-left: 43%;
   width: 350px;
   height: 160px;
   margin-right: 50px;
@@ -256,15 +367,15 @@ h1 {
 .third {
   position: absolute;
   margin-top: -80px;
-  margin-left: 1200px;
+  margin-left: 63%;
   width: 350px;
   height: 160px;
   background-color: #eee0f5;
 }
 img {
-  height: 60px;
-  width: 60px;
-  margin-left: 145px;
+  height: 40%;
+  width: 40%;
+  margin-left: 30%;
   margin-top: 10px;
 }
 .shape {
@@ -273,7 +384,7 @@ img {
 }
 .shape1 {
   position: absolute;
-  margin-left: 400px;
+  margin-left: 23%;
   margin-top: -150px;
   height: 80px;
   width: 350px;
@@ -281,7 +392,7 @@ img {
 }
 .shape2 {
   position: absolute;
-  margin-left: 800px;
+  margin-left: 43%;
   margin-top: -150px;
   height: 80px;
   width: 350px;
@@ -289,7 +400,7 @@ img {
 }
 .shape3 {
   position: absolute;
-  margin-left: 1200px;
+  margin-left: 63%;
   margin-top: -150px;
   height: 80px;
   width: 350px;
@@ -369,7 +480,6 @@ legend {
   left: 0;
   height: 2em;
   width: 2em;
-  /* background-color: pink; */
   border: 2px solid green;
   border-radius: 50%;
 }
@@ -410,7 +520,7 @@ legend {
   border-width: 0 0.15em 0.15em 0;
   transform: rotate(45deg);
 }
-.container .checkmark3:after {
+.container .checkmark3::after {
   left: 0.45em;
   top: 0.2em;
   width: 0.3em;
@@ -418,6 +528,44 @@ legend {
   border: solid seagreen;
   border-width: 0 0.15em 0.15em 0;
   transform: rotate(45deg);
+}
+/*输入框样式 */
+.textarea-container {
+  position: relative;
+  margin: 20px 0;
+}
+
+.textarea {
+  width: 30%;
+  padding: 10px;
+  border: 2px solid #88619a;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: none;
+  height: 150px;
+}
+
+.textarea:focus,
+.textarea:hover {
+  border-color: #777;
+}
+/*用户信息 */
+.info {
+  text-align: center;
+  margin-top: 5px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: #e3e9f2;
+}
+.info input {
+  width: 30%;
+  padding: 10px;
+  border: 2px solid #88619a;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: none;
+  margin: 20px 0;
 }
 /* 提交按钮 */
 .footer {

@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <style>
-      /* // 安卓 */
-      body {
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <style>
+    /* // 安卓 */
+    body {
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      }
-      /* //IOS */
-      i:focus, a:focus, input:focus, p:focus, div:focus {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        /* // -webkit-user- modify: read-write-plaintext-only; // 这个会出现输入图标，不需要 */
-      }
-      /* ios 截图自动生成 container 样式 */
-      .container {
-        font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', STXihei, 'Microsoft YaHei', SimHei;
-      }
-    </style>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    }
+
+    /* //IOS */
+    i:focus,
+    a:focus,
+    input:focus,
+    p:focus,
+    div:focus {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      /* // -webkit-user- modify: read-write-plaintext-only; // 这个会出现输入图标，不需要 */
+    }
+
+    /* ios 截图自动生成 container 样式 */
+    .container {
+      font-family: Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', STXihei, 'Microsoft YaHei', SimHei;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
